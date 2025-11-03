@@ -8,7 +8,8 @@
     "dev": "next dev",
     "build": "npx prisma generate && next build",
     "start": "next start",
-    "migrate": "dotenv -e .env -- prisma migrate dev --name BloodRequest-schema",
+    // "migrate": "dotenv -e .env -- prisma migrate dev --name BloodRequest-schema",
+    "migrate": "dotenv -e .env -- prisma migrate deploy",
     "lint": "eslint"
   },
   "dependencies": {
