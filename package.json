@@ -2,16 +2,16 @@
   "name": "life-id",
   "version": "0.1.0",
   "private": true,
-  "scripts": {
-    "prisma": "prisma",
-    "postinstall": "prisma generate",
-    "dev": "next dev",
-    "build": "npx prisma generate && next build",
-    "start": "next start",
-    // "migrate": "dotenv -e .env -- prisma migrate dev --name BloodRequest-schema",
-    "migrate": "dotenv -e .env -- prisma migrate deploy",
-    "lint": "eslint"
-  },
+ "scripts": {
+  "prisma": "prisma",
+  "postinstall": "prisma generate",
+  "dev": "next dev",
+  "build": "npx prisma generate && next build",
+  "start": "next start",
+  "migrate": "dotenv -e .env -- prisma migrate deploy",
+  "lint": "eslint"
+}
+,
   "dependencies": {
     "@clerk/nextjs": "^6.34.0",
     "@prisma/client": "^6.18.0",
