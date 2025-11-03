@@ -6,7 +6,7 @@
     "prisma": "prisma",
     "postinstall": "prisma generate",
     "dev": "next dev",
-    "build": "next build",
+    "build": "npx prisma generate && next build",
     "start": "next start",
     "migrate": "dotenv -e .env -- prisma migrate dev --name BloodRequest-schema",
     "lint": "eslint"
