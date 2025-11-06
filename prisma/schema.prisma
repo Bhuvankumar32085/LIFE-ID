@@ -1,56 +1,52 @@
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "rhel-openssl-3.0.x"]
+}
+
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
-generator client {
-  provider = "prisma-client-js"
-  binaryTargets = ["native", "linux-musl", "rhel-openssl-3.0.x"]
-}
-
-
-
-
 model User {
-  id            String         @id @default(uuid())
-  clerkId       String         @unique
-  lifeId        String         @unique
-  name          String?
-  email         String?        @unique
-  phone         String?        @unique
-  dob           DateTime?
-  gender        String?
-  bloodGroup    String?
-  country       String?
-  state         String?
-  city          String?
-  consentShare  Boolean        @default(false)
-  createdAt     DateTime       @default(now())
-  updatedAt     DateTime       @updatedAt
-  bloodRequests BloodRequest[]
+  id               String                  @id @default(uuid())
+  clerkId          String                  @unique
+  lifeId           String                  @unique
+  name             String?
+  email            String?                 @unique
+  phone            String?                 @unique
+  dob              DateTime?
+  gender           String?
+  bloodGroup       String?
+  country          String?
+  state            String?
+  city             String?
+  consentShare     Boolean                 @default(false)
+  createdAt        DateTime                @default(now())
+  updatedAt        DateTime                @updatedAt
+  bloodRequests    BloodRequest[]
   receivedRequests BloodRequestRecipient[]
 }
 
 model BloodRequest {
-  id          String   @id @default(uuid())
-  requester   User     @relation(fields: [requesterId], references: [id])
+  id          String                  @id @default(uuid())
+  requester   User                    @relation(fields: [requesterId], references: [id])
   requesterId String
   bloodGroup  String
   city        String?
   hospital    String?
   reason      String?
-  status      String   @default("pending") // pending | fulfilled 
-  createdAt   DateTime @default(now())
+  status      String                  @default("pending") // pending | fulfilled 
+  createdAt   DateTime                @default(now())
   recipients  BloodRequestRecipient[]
 }
 
-
 model BloodRequestRecipient {
-  id         String       @id @default(uuid())
-  request    BloodRequest @relation(fields: [requestId], references: [id])
-  requestId  String
-  recipient  User         @relation(fields: [userId], references: [id])
-  userId     String        // blood donors
-  status     String       @default("pending") // pending | accepted | rejected
-  createdAt  DateTime     @default(now())
+  id        String       @id @default(uuid())
+  request   BloodRequest @relation(fields: [requestId], references: [id])
+  requestId String
+  recipient User         @relation(fields: [userId], references: [id])
+  userId    String // blood donors
+  status    String       @default("pending") // pending | accepted | rejected
+  createdAt DateTime     @default(now())
 }
